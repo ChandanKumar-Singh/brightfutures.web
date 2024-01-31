@@ -50,7 +50,7 @@
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
+        onEntrypointLoaded:async function(engineInitializer) {
           loading.textContent = "Initializing engine...";
           let appRunner = await engineInitializer.initializeEngine();
 

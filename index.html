@@ -38,12 +38,85 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
+<!--    -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f3f5f9;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #loading.active {
+      opacity: 1;
+    }
+
+    /* Custom loading animation */
+    .lds-ring {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 51px;
+      height: 51px;
+      margin: 6px;
+      border: 6px solid #3498db;
+      border-radius: 50%;
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #3498db transparent transparent transparent;
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Text style */
+    #loading-text {
+      font-size: 20px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    #loading-text.running {
+      color: #4CAF50;
+    }
+  </style>
+<!--    -->
 </head>
 <body>
-  <div id="loading"></div>
+  <div id="loading" class="active">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div id="loading-text">Initializing...</div>
+  </div>
   <script>
     window.addEventListener('load', function(ev) {
-        var loading = document.querySelector('#loading');
+     var loading = document.querySelector('#loading');
         loading.textContent = "Loading entrypoint...";
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -54,7 +127,10 @@
           loading.textContent = "Initializing engine...";
           let appRunner = await engineInitializer.initializeEngine();
 
-            loading.textContent = "Running app...";
+             loading.textContent = "Running app...";
+            loading.classList.remove('active'); // Hide loading UI
+            document.getElementById('loading-text').classList.add('running'); // Update text style
+            
             await appRunner.runApp();
           // engineInitializer.initializeEngine().then(function(appRunner) {
           //   appRunner.runApp();

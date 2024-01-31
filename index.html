@@ -129,11 +129,13 @@
 
             loading.textContent = "Running app...";
             loading.classList.remove('active'); // Hide loading UI
-            document.getElementById('loading-text').classList.add('running'); // Update text style
-            await appRunner.runApp();
+            // document.getElementById('loading-text').classList.add('running'); // Update text style
+           setTimeout(async function() { 
+          await appRunner.runApp();
           // engineInitializer.initializeEngine().then(function(appRunner) {
           //   appRunner.runApp();
           // });
+           }, 5000);
         }
       });
     });

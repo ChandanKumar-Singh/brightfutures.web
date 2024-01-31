@@ -185,10 +185,7 @@
   </style>
 </head>
 <body>
-  <div id="loading" class="active">
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    <div id="loading-text">Initializing...</div>
-  </div>
+ 
   <div id="loader-wrapper">
     <div id="loader"></div>
     <div class="loader-section section-left"></div>
@@ -196,23 +193,16 @@
   </div>
   <script>
     window.addEventListener('load', function(ev) {
-      var loading = document.querySelector('#loading');
-      loading.textContent = "Loading entrypoint...";
-      // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: async function(engineInitializer) {
-          loading.textContent = "Initializing engine...";
-          setTimeout(async function() {
-            let appRunner = await engineInitializer.initializeEngine();
-            loading.textContent = "Running app...";
-            loading.classList.remove('active'); // Hide loading UI
-            setTimeout(async function() {
-              await appRunner.runApp();
-            }, 5000);
-          }, 10000);
+        onEntrypointLoaded:async function(engineInitializer) {
+          let appRunner = await engineInitializer.initializeEngine();
+          
+             appRunner.runApp().then(function(appRunner) {
+          document.getElementById('loader-wrapper').remove();
+            });
         }
       });
     });

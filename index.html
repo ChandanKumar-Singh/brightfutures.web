@@ -110,7 +110,7 @@
 <!--    -->
 </head>
 <body>
-  <div id="loading" class="active">
+ <div id="loading" class="active">
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     <div id="loading-text">Initializing...</div>
   </div>
@@ -124,13 +124,12 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded:async function(engineInitializer) {
-          loading.textContent = "Initializing engine...";
+              loading.textContent = "Initializing engine...";
           let appRunner = await engineInitializer.initializeEngine();
 
-             loading.textContent = "Running app...";
+            loading.textContent = "Running app...";
             loading.classList.remove('active'); // Hide loading UI
             document.getElementById('loading-text').classList.add('running'); // Update text style
-            
             await appRunner.runApp();
           // engineInitializer.initializeEngine().then(function(appRunner) {
           //   appRunner.runApp();

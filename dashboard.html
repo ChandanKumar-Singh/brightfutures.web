@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .dashboard-header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dashboard-content {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>Welcome to Your Dashboard</h1>
+        </div>
+        <div class="dashboard-content">
+            <div class="card">
+                <h2>Statistics</h2>
+                <p>View important statistics and analytics.</p>
+                <a href="/statistics" class="dashboard-button">View Details</a>
+            </div>
+            <div class="card">
+                <h2>Tasks</h2>
+                <p>Manage your tasks and to-dos.</p>
+                <a href="/tasks" class="dashboard-button">View Tasks</a>
+            </div>
+            <div class="card">
+                <h2>Settings</h2>
+                <p>Customize your dashboard settings.</p>
+                <a href="/settings" class="dashboard-button">Go to Settings</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
